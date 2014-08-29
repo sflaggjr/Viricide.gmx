@@ -25,9 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>shot_speed = 6;
-
-</string>
+            <string></string>
           </argument>
         </arguments>
       </action>
@@ -49,7 +47,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string></string>
+            <string>if obj_player.vmove = -1
+    {
+        y += 8;
+    }
+</string>
           </argument>
         </arguments>
       </action>

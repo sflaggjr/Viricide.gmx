@@ -27,11 +27,38 @@
             <kind>1</kind>
             <string>hspd = 0;
 vspd = 0;
-movespeed = 4;
+var moveSpdMod = 0;
+var attackSpdMod = 0;
+var shotSpdMod = 0;
+movespeed = 4 + moveSpdMod;
 corrupt = 0;
-attackSpeed = 3;
+attackSpeed = 10 + attackSpdMod;
+canShoot = true;
+shotSpeed = 6 + shotSpdMod;
 
-
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>canShoot = true;
 </string>
           </argument>
         </arguments>
@@ -54,14 +81,15 @@ attackSpeed = 3;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//define player keys
+            <string>///Character Controllers
+//define player keys
 var key_up = -keyboard_check(vk_up);
 var key_down = keyboard_check(vk_down);
 var key_left = -keyboard_check(vk_left);
 var key_right = keyboard_check(vk_right);
-var key_shootUp = keyboard_check_pressed(ord("W"));
-var key_shootDown = keyboard_check_pressed(ord("D"));
-var key_shootLeft = keyboard_check_pressed(ord("A"));
+var key_shootUp = -keyboard_check_pressed(ord("W"));
+var key_shootDown = keyboard_check_pressed(ord("S"));
+var key_shootLeft = -keyboard_check_pressed(ord("A"));
 var key_shootRight = keyboard_check_pressed(ord("D"));
 
 //create key interactions and movement
@@ -92,7 +120,21 @@ if (place_meeting(x, y + vspd, obj_wall))
 x += hspd;
 y += vspd;
 
+//determining shot direction
+v_shot = key_shootUp + key_shootDown;
+h_shot = key_shootLeft + key_shootRight;
+
+
 //create bullets
+if key_shootUp = -1 || key_shootDown = 1 || key_shootLeft = -1 || key_shootRight = 1
+{
+    if canShoot = true
+        {
+            instance_create(x, y, obj_player_shot);
+            canShoot = false;
+            alarm[0] = attackSpeed;
+        }
+}
 </string>
           </argument>
         </arguments>

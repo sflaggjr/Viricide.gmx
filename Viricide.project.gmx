@@ -15,13 +15,13 @@
   <objects name="objects">
     <object>objects\obj_player</object>
     <object>objects\obj_wall</object>
-    <object>objects\object2</object>
+    <object>objects\obj_player_shot</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41879.7036053588</constant>
+    <constant name="GM_build_date">41880.8406317014</constant>
     <constant name="GM_version">'1.0.0.0'</constant>
   </constants>
   <help>
