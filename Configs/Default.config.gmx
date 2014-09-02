@@ -417,5 +417,12 @@
     <option_xbone_splash_screen_colour>#464646</option_xbone_splash_screen_colour>
     <option_xbone_texture_page>1024</option_xbone_texture_page>
   </Options>
-  <ConfigConstants/>
+  <ConfigConstants>
+    <constants number="4">
+      <constant name="shoot_up">6</constant>
+      <constant name="shoot_down">7</constant>
+      <constant name="shoot_left">8</constant>
+      <constant name="shoot_right">9</constant>
+    </constants>
+  </ConfigConstants>
 </Config>

@@ -35,7 +35,7 @@ corrupt = 0;
 attackSpeed = 10 + attackSpdMod;
 canShoot = true;
 shotSpeed = 6 + shotSpdMod;
-
+shootingDirection = 0;
 </string>
           </argument>
         </arguments>
@@ -64,6 +64,44 @@ shotSpeed = 6 + shotSpdMod;
         </arguments>
       </action>
     </event>
+    <event eventtype="3" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if shoot_direction = shoot_up
+    {
+        obj_player_shot.y -= obj_player_shot.shotSpeed;
+    }
+else if shoot_direction = shoot_down
+    {
+        obj_player_shot.y += obj_player_shot.shotSpeed;
+    }
+else if key_shootLeft = -1
+    {
+        shoot_direction = shoot_left;
+    }
+else key_shootRight = 1
+    {
+        shoot_direction = shoot_right;
+    } 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -87,10 +125,10 @@ var key_up = -keyboard_check(vk_up);
 var key_down = keyboard_check(vk_down);
 var key_left = -keyboard_check(vk_left);
 var key_right = keyboard_check(vk_right);
-var key_shootUp = -keyboard_check_pressed(ord("W"));
-var key_shootDown = keyboard_check_pressed(ord("S"));
-var key_shootLeft = -keyboard_check_pressed(ord("A"));
-var key_shootRight = keyboard_check_pressed(ord("D"));
+key_shootUp = -keyboard_check(ord("W"));
+key_shootDown = keyboard_check(ord("S"));
+key_shootLeft = -keyboard_check(ord("A"));
+key_shootRight = keyboard_check(ord("D"));
 
 //create key interactions and movement
 hmove = key_left + key_right;
@@ -121,20 +159,45 @@ x += hspd;
 y += vspd;
 
 //determining shot direction
-v_shot = key_shootUp + key_shootDown;
-h_shot = key_shootLeft + key_shootRight;
-
+/*v_shot = key_shootUp + key_shootDown;
+h_shot = key_shootLeft + key_shootRight;*/
 
 //create bullets
-if key_shootUp = -1 || key_shootDown = 1 || key_shootLeft = -1 || key_shootRight = 1
+if key_shootUp = -1 /*|| key_shootDown = 1 || key_shootLeft = -1 || key_shootRight = 1*/
 {
     if canShoot = true
         {
             instance_create(x, y, obj_player_shot);
+            shootingDirection = shoot_up;
             canShoot = false;
             alarm[0] = attackSpeed;
         }
 }
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_text(0, 0, shootingDirection);
 </string>
           </argument>
         </arguments>
